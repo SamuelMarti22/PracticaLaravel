@@ -12,6 +12,9 @@ class ProductCreateApiController extends Controller
     {
         Product::create($request->only(['name', 'price']));
 
-        return redirect()->route('product.create')->with('success', 'Product created successfully!');
+        $viewData["response"] = "Éxito"
+        $viewData["createdProduct"] = latest()->first();
+
+        return response()->json($viewData, 200);
     }
 }
